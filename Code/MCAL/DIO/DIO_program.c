@@ -22,34 +22,34 @@
 u8 DIO_u8SetPinValue(u8 Copy_u8Port , u8 Copy_u8Pin , u8 Copy_u8Value)
 {
 	u8 Local_u8ErroState = 0 ;//return with value zero no error
-	if(Copy_u8Pin<=DIO_u8PIN7)
+	if(Copy_u8Pin<=DIO_u8PIN7 && Copy_u8Pin>=DIO_u8PIN )  // if pin number between 0 and 7 , its valid value 
 	{
-		if(Copy_u8Value == DIO_u8PIN_LOW )
+		if(Copy_u8Value == DIO_u8PIN_LOW ) // check if pin is low 
 		{
-			switch (Copy_u8Port)
+			switch (Copy_u8Port) // check port 
 			{
 				case DIO_u8PORTA:CLR_BIT(PORTA,Copy_u8Pin);break; 
 				case DIO_u8PORTB:CLR_BIT(PORTB,Copy_u8Pin);break;
 				case DIO_u8PORTC:CLR_BIT(PORTC,Copy_u8Pin);break;
 				case DIO_u8PORTD:CLR_BIT(PORTD,Copy_u8Pin);break;
-				default:Local_u8ErroState = 1 ; break;
+				default:Local_u8ErroState = 1 ; 
 				
 			}
 		}
 			
-		else if(Copy_u8Value == DIO_u8PIN_HIGH )
+		else if(Copy_u8Value == DIO_u8PIN_HIGH ) // check pin high 
 		{
-			switch (Copy_u8Port)
+			switch (Copy_u8Port) // check port 
 			{
 					case DIO_u8PORTA:SET_BIT(PORTA,Copy_u8Pin);break;
 					case DIO_u8PORTB:SET_BIT(PORTB,Copy_u8Pin);break;
 					case DIO_u8PORTC:SET_BIT(PORTC,Copy_u8Pin);break;
 					case DIO_u8PORTD:SET_BIT(PORTD,Copy_u8Pin);break;
-					default:Local_u8ErroState = 1 ; break;
+					default:Local_u8ErroState = 1 ; 
 					
 			}
 		}
-		else 
+		else  // if the selction is differ from high and low , function will return error 
 		{
 			Local_u8ErroState = 1 ; 
 			
