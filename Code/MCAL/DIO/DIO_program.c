@@ -65,13 +65,13 @@ u8 DIO_u8SetPinValue(u8 Copy_u8Port , u8 Copy_u8Pin , u8 Copy_u8Value)
 u8 DIO_u8SetPortValue(u8 Copy_u8Port , u8 Copy_u8Value)
 {
 	u8 Local_u8ErroState = 0 ;
-	 switch(Copy_u8Port)
+	 switch(Copy_u8Port) // check port 
 	 {
-		 case DIO_u8PORTA : PORTA = Copy_u8Value ; break; 
+		 case DIO_u8PORTA : PORTA = Copy_u8Value ; break;  // asign value to port 
 		 case DIO_u8PORTB : PORTB = Copy_u8Value ; break; 
 		 case DIO_u8PORTC : PORTC = Copy_u8Value ; break; 
 		 case DIO_u8PORTD : PORTD = Copy_u8Value ; break;
-		 default: Local_u8ErroState = 1 ; break;
+		 default: Local_u8ErroState = 1 ; break; // if port not exsist , return 1 as error status 
 	 } 
 	return Local_u8ErroState ; 
 }// end of set port value function 
@@ -80,13 +80,13 @@ u8 DIO_u8SetPortValue(u8 Copy_u8Port , u8 Copy_u8Value)
 /*function to read pin value high or low */
 u8 DIO_u8GetPinValue(u8 Copy_u8Port , u8 Copy_u8Pin , u8* Copy_Pu8Value)
 {
-	u8 Local_u8ErroState = 0 ; 
+	u8 Local_u8ErroState = 0 ;  // error state variable to return function state 
 	
-	if((Copy_Pu8Value!= NULL) && (Copy_u8Pin <= DIO_u8PIN7))
+	if((Copy_Pu8Value!= NULL) && (Copy_u8Pin <= DIO_u8PIN7)) // check that the passed adress not NULL , and pin in range 0f 0 -> 7
 	{
 		switch (Copy_u8Port)
 		{
-			case DIO_u8PORTA :*Copy_Pu8Value = GET_BIT(PINA,Copy_u8Pin); break; 
+			case DIO_u8PORTA :*Copy_Pu8Value = GET_BIT(PINA,Copy_u8Pin); break; // return pin state on the address of varaiable 
 			case DIO_u8PORTB :*Copy_Pu8Value = GET_BIT(PINB,Copy_u8Pin); break;
 			case DIO_u8PORTC :*Copy_Pu8Value = GET_BIT(PINC,Copy_u8Pin); break;
 			case DIO_u8PORTD :*Copy_Pu8Value = GET_BIT(PIND,Copy_u8Pin); break;
@@ -96,7 +96,7 @@ u8 DIO_u8GetPinValue(u8 Copy_u8Port , u8 Copy_u8Pin , u8* Copy_Pu8Value)
 	}
 	else 
 	{
-		Local_u8ErroState = 1; 
+		Local_u8ErroState = 1; // return error if pin is not in range of 0->7 or adress passed to function is equal to NULL 
 	}
 	return Local_u8ErroState ; 
 	
