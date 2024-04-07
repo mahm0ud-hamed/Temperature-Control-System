@@ -12,12 +12,13 @@
 
 #include "GIE_interface.h"
 #include "GIE_register.h"
-
+// function to enable General interrupt 
 void GIE_vidEnable(void)
 {
 	SET_BIT(SREG,SREG_I);
 }
 
+// function to disable general interrupt 
 void GIE_vidDisable(void)
 {
 	CLR_BIT(SREG,SREG_I);
