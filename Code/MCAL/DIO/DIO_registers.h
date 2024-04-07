@@ -9,9 +9,11 @@
 
 #ifndef DIO_REGISTERS_H_	
 #define DIO_REGISTERS_H_
-
-#define PORTA      *((volatile u8 *)0x3b)
-#define DDRA       *((volatile u8 *)0x3a)
+/* using volatile to tell processorr rvery time i need value get it from memory not from CPU register , don't make copy in CPU Register
+   because it is a memory and every time processor will read it so its may make a copy of register in CPU registers */ 
+/* MACROS of Register Address */
+#define PORTA      *((volatile u8 *)0x3b) 
+#define DDRA       *((volatile u8 *)0x3a) 
 #define PINA       *((volatile u8 *)0x39)
 								
 #define PORTB	   *((volatile u8 *)0x38)
